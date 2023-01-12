@@ -10,7 +10,7 @@ class RegistrationForm(FlaskForm):
 
     email = StringField(
         "Email",
-        description="my@email.com",
+        description="your@email.com...",
         validators=[
             DataRequired(),
             Email(),
@@ -19,22 +19,27 @@ class RegistrationForm(FlaskForm):
     )
     username = StringField(
         "Username",
-        description="Username",
+        description="Username...",
         validators=[
             DataRequired(),
             unique_or_current_user_field("Username is already taken."),
             safe_string(),
-            Length(min=3, max=40),
+            Length(min=3, max=20),
         ],
     )
-    name = StringField(
-        "John Doe",
-        description="John Doe",
-        validators=[DataRequired(), Length(min=1, max=80)],
+    company_name = StringField(
+        "Company name",
+        description="Company name...",
+        validators=[
+            DataRequired(),
+            unique_or_current_user_field("Company name is already taken."),
+            safe_string(),
+            Length(min=6, max=25),
+        ],
     )
     password = PasswordField(
         "Password",
-        description="Old password",
+        description="Password",
         validators=[DataRequired(), Length(min=5, max=40)],
     )
     pass_confirm = PasswordField(
@@ -65,12 +70,19 @@ class LoginForm(FlaskForm):
 class SettingsForm(FlaskForm):
     """Allow users to update their name, username, email, and password"""
 
-    name = StringField(
-        "Name", description="John Smith", validators=[Optional(), Length(max=80)],
+    company_name = StringField(
+        "Company name",
+        description="New company name",
+        validators=[
+            DataRequired(),
+            unique_or_current_user_field("Company name is already taken."),
+            safe_string(),
+            Length(min=6, max=25),
+        ],
     )
     username = StringField(
         "Username",
-        description="Username",
+        description="New username",
         validators=[
             DataRequired(),
             unique_or_current_user_field("Username already exists."),
@@ -80,7 +92,7 @@ class SettingsForm(FlaskForm):
     )
     email = StringField(
         "Email",
-        description="my@email.com",
+        description="your@email.com",
         validators=[
             DataRequired(),
             Email(),

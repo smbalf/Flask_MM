@@ -14,11 +14,11 @@
         <p style="color: red">{{ error }}</p>
       {% endfor %}
     </div>
-    <!-- Name -->
+    <!-- Company Name -->
     <div class="form-group">
-      {{ form.name.label(class="form-group") }}
-      {{ form.name(class="form-control text-center", placeholder=form.name.description) }}
-      {% for error in form.name.errors %}
+      {{ form.company_name.label(class="form-group") }}
+      {{ form.company_name(class="form-control text-center", placeholder=form.company_name.description) }}
+      {% for error in form.company_name.errors %}
         <p style="color: red">{{ error }}</p>
       {% endfor %}
     </div>

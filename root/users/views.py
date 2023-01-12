@@ -29,7 +29,7 @@ def register():
         user = User(
             email=form.email.data,
             username=form.username.data,
-            name=form.name.data,
+            company_name=form.company_name.data,
             password_hash=password_hash,
         )
         user.save()
@@ -85,7 +85,7 @@ def settings():
     form = SettingsForm()
     if form.validate_on_submit():
         current_user.username = form.username.data
-        current_user.name = form.name.data
+        current_user.company_name = form.company_name.data
         current_user.email = form.email.data
         if form.new_pass.data:
             new_hash = generate_password_hash(form.new_pass.data)
@@ -95,7 +95,7 @@ def settings():
         return redirect(url_for("core.index"))
     elif request.method == "GET":
         form.username.data = current_user.username
-        form.name.data = current_user.name
+        form.company_name.data = current_user.company_name
         form.email.data = current_user.email
 
     return render_template("users/settings.html", form=form)
@@ -174,7 +174,7 @@ def oauth_generalized(oauth_client):
         # Create user and save to database
         user_data = {
             "username": username,
-            "name": client_name,
+            "company_name": f'The company of {client_name}',
             db_oauth_key: client_oauth_id,
         }
         user = User(**user_data)
@@ -193,13 +193,11 @@ def google_oauth_disconnect():
 
 def can_oauth_disconnect():
     """Test to determine if OAuth disconnect is allowed"""
-    has_gh = True if current_user.github_id else False
     has_gg = True if current_user.google_id else False
-    has_fb = True if current_user.facebook_id else False
     has_email = True if current_user.email else False
     has_pw = True if current_user.password_hash else False
 
-    oauth_count = [has_gh, has_gg, has_fb].count(True)
+    oauth_count = [has_gg].count(True)
     return bool(oauth_count > 1 or (has_email and has_pw))
 
 

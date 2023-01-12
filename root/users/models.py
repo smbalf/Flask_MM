@@ -19,8 +19,8 @@ class User(db.Document, UserMixin):
     """
 
     # User editable fields
-    username = db.StringField(required=True, unique=True, max_length=40, index=True)
-    name = db.StringField(required=False, max_length=80, index=True)
+    username = db.StringField(required=True, unique=True, max_length=20, index=True)
+    company_name = db.StringField(required=True, unique=True, max_length=25, index=True)
     email = db.EmailField(unique=True, required=False, sparse=True, max_length=80, index=True)
     password_hash = db.StringField(required=False, index=True)
 
