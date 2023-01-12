@@ -1,0 +1,14 @@
+# Flask
+Flask
+Flask-WTF
+Flask-Login
+email-validator
+
+# Database
+flask-mongoengine
+
+# OAuth
+Authomatic
+
+# Environment variables management
+python-dotenv
