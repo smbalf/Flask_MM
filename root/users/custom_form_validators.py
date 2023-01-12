@@ -18,14 +18,13 @@ def safe_string():
 
     def validation(form, field):
         string = field.data.lower()
-        pattern = re.compile(r"^[a-z0-9_-]+$")
+        pattern = re.compile(r"^[a-z0-9_\-\s]+$")
         match = pattern.match(string)
         if not match:
-            message = "Must contain only letters, numbers, dashes and underscores."
+            message = "Must contain only letters, numbers, spaces, dashes, and underscores."
             raise ValidationError(message)
 
     return validation
-
 
 def unique_or_current_user_field(message=None):
     """Validates that a field is either equal to the user's current field
