@@ -13,11 +13,12 @@
       <p>Username: {{ current_user.username }}</p>
       <p>Name: {{ current_user.company_name }}</p>
       <p>Email: {{ current_user.email }}</p>
-      <!-- You would probably never show these last 4 categories to your users -->
-      <!-- BUT, at least your password isn't stored in clear text! -->
+      <!-- You would probably never show these last 4 categories to your users
+      BUT, at least your password isn't stored in clear text!
       <p>Password hash:</p>
       <p>{{ current_user.password_hash }}</p>
       <p>Google ID: {{ current_user.google_id }}</p>
+      -->
     {% else %}
       <p>You are not logged in</p>
     {% endif %}

@@ -1,4 +1,4 @@
-from authomatic.adapters import WerkzeugAdapter
+# from authomatic.adapters import WerkzeugAdapter # NO LONGER USING OAUTH2
 from flask import (
     Blueprint,
     flash,
@@ -13,10 +13,11 @@ from werkzeug.security import generate_password_hash
 
 from root.users.forms import LoginForm, RegistrationForm, SettingsForm
 from root.users.models import User
-from root.users.oauth_config import authomatic
+# from root.users.oauth_config import authomatic  # NO LONGER USING OAUTH2
 
 
 users = Blueprint("users", __name__)
+
 
 # REGISTRATION
 @users.route("/register", methods=["GET", "POST"])
@@ -37,12 +38,14 @@ def register():
         return login_and_redirect(user)
     return render_template("users/register.html", form=form)
 
+
 # LOGIN AND REDIRECT TO HOME
 def login_and_redirect(user):
     """Logs in user, flashes welcome message and redirects to index"""
     login_user(user)
     flash(f"Welcome {user.username}!", category="success")
     return redirect(url_for("core.index"))
+
 
 # LOGIN
 @users.route("/login", methods=["GET", "POST"])
@@ -68,6 +71,7 @@ def login():
 
     return render_template("users/login.html", form=form)
 
+
 # LOGOUT
 @users.route("/logout")
 @login_required
@@ -76,6 +80,7 @@ def logout():
     logout_user()
     flash("You have logged out.", category="success")
     return redirect(url_for("users.login"))
+
 
 # SETTINGS
 @users.route("/settings", methods=["GET", "POST"])
@@ -100,6 +105,7 @@ def settings():
 
     return render_template("users/settings.html", form=form)
 
+
 # DELETE ACCOUNT
 @users.route("/delete_account")
 @login_required
@@ -109,13 +115,19 @@ def delete_account():
     flash("Account deleted!", category="success")
     return redirect(url_for("core.index"))
 
+
+
+
+# COMMENTING OUT OAUTH FOR NOW
+
+"""
 @users.route("/google_oauth")
 def google_oauth():
-    """Perform google OAuth operations"""
+    #Perform google OAuth operations
     return oauth_generalized("Google")
 
 def oauth_generalized(oauth_client):
-    """Perform OAuth registration, login, or account association"""
+    #Perform OAuth registration, login, or account association
     # Get response object for the WerkzeugAdapter.
     response = make_response()
     # Log the user in, pass it the adapter and the provider name.
@@ -187,12 +199,12 @@ def oauth_generalized(oauth_client):
 
 @users.route("/google_oauth_disconnect")
 def google_oauth_disconnect():
-    """Disconnect Google OAuth"""
+    #Disconnect Google OAuth
     return oauth_disconnect("Google")
 
 
 def can_oauth_disconnect():
-    """Test to determine if OAuth disconnect is allowed"""
+    #Test to determine if OAuth disconnect is allowed
     has_gg = True if current_user.google_id else False
     has_email = True if current_user.email else False
     has_pw = True if current_user.password_hash else False
@@ -202,7 +214,7 @@ def can_oauth_disconnect():
 
 
 def oauth_disconnect(oauth_client):
-    """Generalized oauth disconnect"""
+    #Generalized oauth disconnect
     if not current_user.is_authenticated:
         return redirect(url_for("users.login"))
 
@@ -212,4 +224,4 @@ def oauth_disconnect(oauth_client):
     current_user.save()
 
     flash(f"Disconnected from {oauth_client}!")
-    return redirect(url_for("users.settings"))
+    return redirect(url_for("users.settings"))"""

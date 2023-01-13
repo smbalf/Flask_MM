@@ -49,8 +49,8 @@
   </form>
 
   <br>
+  <!-- COMMENTIGN OUT OAUTH 
   <h2>Other connections</h2><br>
-  <!-- Google -->
   <h3><i class="fab fa-google-plus-square"></i> Google</h3>
   {% if current_user.google_id %}
     <h5>Connected</h5>
@@ -71,6 +71,7 @@
     <h5><a class="btn btn-info" href="{{ url_for('users.google_oauth') }}">Connect to Google</a></h5>
   {% endif %}
   <br><br>
+  -->
 
   <!-- Delete Account -->
   <h2>Delete account?</h2>

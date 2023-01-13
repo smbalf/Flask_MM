@@ -24,8 +24,8 @@ class User(db.Document, UserMixin):
     email = db.EmailField(unique=True, required=False, sparse=True, max_length=80, index=True)
     password_hash = db.StringField(required=False, index=True)
 
-    # OAuth stuff
-    google_id = db.StringField(unique=True, required=False, sparse=True, index=True)
+    # OAUTH COMMENTED OUT
+    # google_id = db.StringField(unique=True, required=False, sparse=True, index=True)
 
     def __repr__(self):
         """Define what is printed for the user object"""

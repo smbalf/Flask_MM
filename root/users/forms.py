@@ -40,7 +40,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField(
         "Password",
         description="Password",
-        validators=[DataRequired(), Length(min=5, max=40)],
+        validators=[DataRequired(), Length(min=8, max=30)],
     )
     pass_confirm = PasswordField(
         "Confirm password",
@@ -87,7 +87,7 @@ class SettingsForm(FlaskForm):
             DataRequired(),
             unique_or_current_user_field("Username already exists."),
             safe_string(),
-            Length(min=3, max=40),
+            Length(min=3, max=20),
         ],
     )
     email = StringField(
