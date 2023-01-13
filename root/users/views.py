@@ -28,9 +28,9 @@ def register():
     if form.validate_on_submit():
         password_hash = generate_password_hash(form.password.data)
         user = User(
-            email=form.email.data,
-            username=form.username.data,
-            company_name=form.company_name.data,
+            email=form.email.data.lower(),
+            username=form.username.data.lower(),
+            company_name=form.company_name.data.lower(),
             password_hash=password_hash,
         )
         user.save()
@@ -41,9 +41,8 @@ def register():
 
 # LOGIN AND REDIRECT TO HOME
 def login_and_redirect(user):
-    """Logs in user, flashes welcome message and redirects to index"""
+    """Logs in user and redirects to index"""
     login_user(user)
-    flash(f"Welcome {user.username}!", category="success")
     return redirect(url_for("core.index"))
 
 
@@ -55,7 +54,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # Grab the user from a user model lookup
-        username_or_email = form.username_or_email.data
+        username_or_email = form.username_or_email.data.lower()
         if "@" in username_or_email:
             user = User.objects(email=username_or_email).first()
         else:
@@ -89,9 +88,9 @@ def settings():
     """Update user settings"""
     form = SettingsForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.company_name = form.company_name.data
-        current_user.email = form.email.data
+        current_user.username = form.username.data.lower()
+        current_user.company_name = form.company_name.data.lower()
+        current_user.email = form.email.data.lower()
         if form.new_pass.data:
             new_hash = generate_password_hash(form.new_pass.data)
             current_user.password_hash = new_hash

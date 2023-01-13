@@ -44,6 +44,7 @@ def create_app():
 
     # initialize database
     db.init_app(app)
+    
 
     # initialize login manager
     login_manager.init_app(app)

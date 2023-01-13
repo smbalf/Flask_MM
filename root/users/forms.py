@@ -7,7 +7,6 @@ from root.users.custom_form_validators import safe_string, unique_or_current_use
 
 class RegistrationForm(FlaskForm):
     """Register a new user with email, username, and password"""
-
     email = StringField(
         "Email",
         description="your@email.com...",
