@@ -31,6 +31,7 @@ def create_app():
     # Update app.config from environment variables
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
     app.config["MONGODB_SETTINGS"] = {
+        "db": "playerData",
         "authentication_source": "admin",
         "host": os.getenv("MONGODB_HOST"),
         "port": int(os.getenv("MONGODB_PORT")),
@@ -44,6 +45,7 @@ def create_app():
 
     # initialize database
     db.init_app(app)
+    print(app.config)
     
 
     # initialize login manager
