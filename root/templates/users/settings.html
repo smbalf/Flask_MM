@@ -49,29 +49,6 @@
   </form>
 
   <br>
-  <!-- COMMENTIGN OUT OAUTH 
-  <h2>Other connections</h2><br>
-  <h3><i class="fab fa-google-plus-square"></i> Google</h3>
-  {% if current_user.google_id %}
-    <h5>Connected</h5>
-    {% if can_disconnect %}
-      <a class="btn btn-warning" href="{{ url_for('users.google_oauth_disconnect') }}">
-        Disconnect from Google
-      </a>
-    {% else %}
-      <button class="btn btn-warning" type="button" disabled>
-        Disconnect from Google
-      </button>
-      <p style="color: red">
-        You must define an email and password or connect
-        to another social OAuth before disconnecting from Google.
-      </p>
-    {% endif %}
-  {% else %}
-    <h5><a class="btn btn-info" href="{{ url_for('users.google_oauth') }}">Connect to Google</a></h5>
-  {% endif %}
-  <br><br>
-  -->
 
   <!-- Delete Account -->
   <h2>Delete account?</h2>
