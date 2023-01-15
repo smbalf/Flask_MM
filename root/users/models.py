@@ -23,6 +23,9 @@ class User(db.Document, UserMixin):
     company_name = db.StringField(required=True, unique=True, max_length=25, index=True)
     email = db.EmailField(unique=True, required=False, sparse=True, max_length=80, index=True)
     password_hash = db.StringField(required=False, index=True)
+    meta = {"db_alias": "playerData", "collection": "users"}
+
+
     # OAUTH COMMENTED OUT
     # google_id = db.StringField(unique=True, required=False, sparse=True, index=True)
 

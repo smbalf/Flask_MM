@@ -30,26 +30,40 @@ def create_app():
 
     # Update app.config from environment variables
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-    app.config["MONGODB_SETTINGS"] = {
-        "db": "playerData",
-        "authentication_source": "admin",
-        "host": os.getenv("MONGODB_HOST"),
-        "port": int(os.getenv("MONGODB_PORT")),
-        "username": os.getenv("MONGODB_USERNAME"),
-        "password": os.getenv("MONGODB_PASSWORD"),
-    }
+    app.config["MONGODB_SETTINGS"] = [
+        {
+            "db": "playerData",
+            "alias": "playerData",
+            "authentication_source": "admin",
+            "host": os.getenv("PLAYERDATA_HOST"),
+            "port": int(os.getenv("MONGODB_PORT")),
+            "username": os.getenv("MONGODB_USERNAME"),
+            "password": os.getenv("MONGODB_PASSWORD"),
+        },
+        {
+            "db": "randomData",
+            "alias": "randomData",
+            "authentication_source": "admin",
+            "host": os.getenv("RANDOMDATA_HOST"),
+            "port": int(os.getenv("MONGODB_PORT")),
+            "username": os.getenv("MONGODB_USERNAME"),
+            "password": os.getenv("MONGODB_PASSWORD"),
+        }
+    ]
 
     # register blueprints
     app.register_blueprint(core, url_prefix="")
     app.register_blueprint(users, url_prefix="/users")
 
-    # initialize database
+    # initialise database with MongoDB settings
     db.init_app(app)
-    print(app.config)
-    
+    with app.app_context():
+        print(f"Connected to database: {db.connection}")
+
 
     # initialize login manager
     login_manager.init_app(app)
     login_manager.login_view = "users.login"
 
     return app
+
