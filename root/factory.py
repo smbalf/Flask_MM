@@ -9,6 +9,7 @@ import socketio
 from root.core.views import core
 from root.globals import db, login_manager, socketio
 from root.users.views import users
+from root.button.views import button
 
 
 class MongoJsonEncoder(JSONEncoder):
@@ -55,12 +56,15 @@ def create_app():
     # register blueprints
     app.register_blueprint(core, url_prefix="")
     app.register_blueprint(users, url_prefix="/users")
+    app.register_blueprint(button, url_prefix="/button")
     
     # initialise database with MongoDB settings
     db.init_app(app)
     
+    """
     with app.app_context():
         print(f"Connected to database: {db.connection}")
+    """
 
     # initialize login manager
     login_manager.init_app(app)

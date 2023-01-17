@@ -11,7 +11,7 @@
     {% if current_user.is_authenticated %}
       <h3>You are logged in</h3>
       <p>Username: {{ current_user.username }}</p>
-      <p>Name: {{ current_user.company_name }}</p>
+      <p>Company: {{ current_user.company_name }}</p>
       <p>Email: {{ current_user.email }}</p>
       <!-- You would probably never show these last 4 categories to your users
       BUT, at least your password isn't stored in clear text!

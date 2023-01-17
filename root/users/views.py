@@ -34,6 +34,7 @@ def register():
             username=form.username.data.lower(),
             company_name=form.company_name.data.lower(),
             password_hash=password_hash,
+            gold=0
         )
         user.save()
         flash("Thanks for registering!", category="success")

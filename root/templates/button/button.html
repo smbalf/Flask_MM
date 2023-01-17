@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container text-center">
+  <div class="jumbotron">
+    <h1 class="display-4">Click the button!</h1>
+    <hr class="my-4">
+    <button type="button" class="btn btn-dark btn-lg">+1</button>
+    <p>Company: {{ current_user.company_name }}</p>
+  </div>
+</div>
+{% endblock content %}
