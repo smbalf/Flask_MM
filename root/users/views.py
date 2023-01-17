@@ -11,12 +11,14 @@ from flask import (
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash
 
+
 from root.users.forms import LoginForm, RegistrationForm, SettingsForm
 from root.users.models import User
 # from root.users.oauth_config import authomatic  # NO LONGER USING OAUTH2
 
 
 users = Blueprint("users", __name__)
+
 
 
 # REGISTRATION

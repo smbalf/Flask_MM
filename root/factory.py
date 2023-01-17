@@ -4,9 +4,10 @@ from datetime import datetime
 from bson import ObjectId, json_util
 from flask import Flask
 from flask.json import JSONEncoder
+import socketio
 
 from root.core.views import core
-from root.globals import db, login_manager
+from root.globals import db, login_manager, socketio
 from root.users.views import users
 
 
@@ -54,16 +55,18 @@ def create_app():
     # register blueprints
     app.register_blueprint(core, url_prefix="")
     app.register_blueprint(users, url_prefix="/users")
-
+    
     # initialise database with MongoDB settings
     db.init_app(app)
+    
     with app.app_context():
         print(f"Connected to database: {db.connection}")
-
 
     # initialize login manager
     login_manager.init_app(app)
     login_manager.login_view = "users.login"
+
+    socketio.init_app(app)
 
     return app
 
