@@ -28,6 +28,20 @@ item_dict = {
     {
         "name": "Grain",
         "price": 1
+    },
+    "6":
+    {
+        "name": "Water",
+        "price": 3
+    },
+    "7":
+    {
+        "name": "Nails",
+        "price": 1
+    },
+    "8":
+    {
+        "name": "Iron",
+        "price": 10
     }
-
 }

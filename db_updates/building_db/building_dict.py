@@ -9,7 +9,7 @@ building_dict = {
     },
     "1": 
     {
-        "name": "Doghouse",
+        "name": "XXX",
         "cost": {      
             "Plank": 3,
             "Stone": 5,
@@ -17,5 +17,12 @@ building_dict = {
             "Belt": 1 
         }
     },
-
+    "2": 
+    {
+        "name": "Warehouse",
+        "cost": {
+            "Plank": 100,
+            "Stone": 200
+        }
+    }
 }
