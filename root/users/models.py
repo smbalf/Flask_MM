@@ -23,7 +23,7 @@ class User(db.Document, UserMixin):
     company_name = db.StringField(required=True, unique=True, max_length=25, index=True)
     email = db.EmailField(unique=True, required=False, sparse=True, max_length=80, index=True)
     password_hash = db.StringField(required=False, index=True)
-    gold = db.Integer()
+    gold = db.IntField(default=0)
     meta = {"db_alias": "playerData", "collection": "users"}
 
 

@@ -4,8 +4,9 @@
   <div class="jumbotron">
     <h1 class="display-4">Click the button!</h1>
     <hr class="my-4">
-    <button type="button" class="btn btn-dark btn-lg">+1</button>
+    <button id="gold-button" type="button" class="btn btn-dark btn-lg">+1</button>
     <p>Company: {{ current_user.company_name }}</p>
+    <p id="gold-value">Gold: {{current_user.gold }}</p>
   </div>
 </div>
 {% endblock content %}

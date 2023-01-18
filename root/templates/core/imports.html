@@ -1,5 +1,3 @@
-<!-- We are importing bootstrap4 CDNs to make our pages look pretty -->
-<!-- Bootstrap4 consists of a Stylesheet and 3 javascript files -->
 <link rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -20,18 +18,23 @@
     crossorigin="anonymous"></script>
 <script>
     var socket = io();
-
-    // listen for the 'connect' event
     socket.on('connect', function() {
         console.log('Connected to server.');
-
-        // send 'my event' event to server with data
-        socket.emit('my event', {data: 'I\'m connected!'});
-    });
-
-    // listen for the 'my response' event
-    socket.on('my response', function(data) {
-        console.log(data);
     });
 </script>
-    
+
+<!-- BUTTON SCRIPT -->
+<script>
+    window.onload = function() {
+        var user_id = '{{current_user.id}}';
+        
+        document.getElementById("gold-button").addEventListener("click", function() {
+            socket.emit("update_gold", { user_id: user_id });
+        });
+        socket.on("update_gold_response", function(data) {
+            console.log("received update_gold_response");
+            document.getElementById("gold-value").textContent = data.gold;
+            console.log(data.gold);
+        }, room=user_id);
+    }
+</script>
