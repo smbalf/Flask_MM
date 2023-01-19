@@ -3,7 +3,7 @@
     window.onload = function() {
         var user_gold = parseInt('{{current_user.gold}}');
         var user_id = '{{current_user.id}}';
-
+        
         document.getElementById("gold-button").addEventListener("click", function() {
             user_gold += 1;
             document.getElementById("gold-value").textContent = `Gold: ${user_gold}`;
