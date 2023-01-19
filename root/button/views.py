@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template
-from flask_socketio import SocketIO, emit
+from flask_socketio import emit
 from flask_login import current_user, login_required
 
 from root.users.models import User
-from root.globals import db, socketio
+from root.globals import socketio
 
 button = Blueprint("button", __name__)
 

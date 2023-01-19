@@ -3,26 +3,26 @@ building_dict = {
     {
         "name": "Farm",
         "cost": {      
-            "Plank": 3,
-            "Stone": 5 
+            "Plank": 10,
+            "Stone": 6,
+            "Gold": 20
         }
     },
     "1": 
     {
-        "name": "XXX",
+        "name": "Grocer",
         "cost": {      
-            "Plank": 3,
-            "Stone": 5,
-            "Dog": 5,
-            "Belt": 1 
+            "Plank": 6,
+            "Gold": 10
         }
     },
     "2": 
     {
         "name": "Warehouse",
         "cost": {
-            "Plank": 100,
-            "Stone": 200
+            "Plank": 200,
+            "Stone": 200,
+            "Gold": 200
         }
     }
 }

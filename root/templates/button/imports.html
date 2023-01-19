@@ -1,0 +1,15 @@
+<!-- BUTTON SCRIPT -->
+<script>
+    window.onload = function() {
+        var user_id = '{{current_user.id}}';
+        
+        document.getElementById("gold-button").addEventListener("click", function() {
+            socket.emit("update_gold", { user_id: user_id });
+        });
+        socket.on("update_gold_response", function(data) {
+            console.log("received update_gold_response");
+            document.getElementById("gold-value").textContent = data.gold;
+            console.log(data.gold);
+        }, room=user_id);
+    }
+</script>
