@@ -71,6 +71,7 @@ def create_app():
     login_manager.login_view = "users.login"
 
     socketio.init_app(app)
+    #sess.init_app(app)
 
     return app
 

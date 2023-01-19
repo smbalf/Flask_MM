@@ -15,6 +15,5 @@ db = MongoEngine()
 # SocketIO setup
 socketio = SocketIO()
 
-
 # Login manager setup
 login_manager = LoginManager()
