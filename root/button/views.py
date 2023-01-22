@@ -27,6 +27,7 @@ def update_gold(data):
     user = User.objects(id=user_id).first()
     user.gold = user_gold
     session[user_sid] = user
+    user.save()
     """if request.namespace != "/update_gold":
         user.save()
         print("SAVING DATA DUE TO DIFFERENT PATH")"""
